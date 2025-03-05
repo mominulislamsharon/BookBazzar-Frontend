@@ -1,13 +1,9 @@
-import Banner from "./components/layout/Banner";
-import Navbar from "./components/layout/Navbar";
+import Banner from "./pages/Home/Banner";
 
 function App() {
   return (
     <>
-      <div className="bg-white shadow-md fixed top-0 w-full z-50">
-        <Navbar></Navbar>
-      </div>
-      <div className="mt-[88px]">
+      <div className="mt-[83px]">
         <Banner></Banner>
       </div>
     </>

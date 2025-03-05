@@ -1,43 +1,45 @@
 import { useState } from "react";
 import { Menu, Search, ShoppingCart, User, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // Mobile Menu
   const [showSearch, setShowSearch] = useState(false); // Desktop Search
   const [showCart, setShowCart] = useState(false); // Order Cart Drawer
   const [showMobileSearch, setShowMobileSearch] = useState(false); // Mobile Search Modal
-
   return (
     <>
-      <nav className="bg-white shadow-md fixed w-full z-50">
+      <nav className="bg-white shadow-md fixed top-0 w-full z-50">
         <div className="container mx-auto px-6 py-6 flex justify-between items-center">
           {/* Left Side - Logo */}
-          <h1 className="text-2xl font-bold whitespace-nowrap md:pr-8 lg:-pr-0">
+          <NavLink
+            to="/"
+            className="text-2xl font-bold whitespace-nowrap md:pr-8 lg:-pr-0"
+          >
             BookBazaar
-          </h1>
-
+          </NavLink>
           {/* Center Menu - Home, About, Contact (only desktop) */}
           <div className="hidden md:flex md:space-x-4 font-medium lg:space-x-6 whitespace-nowrap md:pr-6 lg:pr-0">
-            <a href="#" className="hover:text-blue-600">
+            <Link to="/" className="hover:text-blue-600">
               Home
-            </a>
-            <a href="#" className="hover:text-blue-600">
+            </Link>
+            <NavLink to="allProducts" className="hover:text-blue-600">
               All Products
-            </a>
-            <a href="#" className="hover:text-blue-600">
+            </NavLink>
+            <NavLink to="/ourServices" className="hover:text-blue-600">
               Our Services
-            </a>
-            <a href="#" className="hover:text-blue-600">
+            </NavLink>
+            <NavLink to="/gallery" className="hover:text-blue-600">
               Gallery
-            </a>
-            <a href="#" className="hover:text-blue-600">
+            </NavLink>
+            <NavLink to="/aboutUs" className="hover:text-blue-600">
               About Us
-            </a>
-            <a href="#" className="hover:text-blue-600">
+            </NavLink>
+            <NavLink to="/contact" className="hover:text-blue-600">
               Contact
-            </a>
+            </NavLink>
           </div>
 
           {/* Right Side */}
@@ -76,9 +78,12 @@ export default function Navbar() {
             </Button>
 
             {/* Login Icon */}
-            <Button className="p-2 hover:bg-gray-100 rounded-full">
+            <NavLink
+              to="/admin/dashboard"
+              className="p-2 hover:bg-gray-100 rounded-full"
+            >
               <User size={24} />
-            </Button>
+            </NavLink>
 
             {/* Mobile Menu Icon */}
             <div className="md:hidden">
@@ -95,24 +100,48 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden bg-white shadow-lg py-3 space-y-2">
-            <a href="#" className="block px-4 py-2">
+            <NavLink
+              to="/"
+              onClick={() => setIsOpen(false)}
+              className="block px-4 py-2"
+            >
               Home
-            </a>
-            <a href="#" className="block px-4 py-2">
+            </NavLink>
+            <NavLink
+              to="/allProducts"
+              onClick={() => setIsOpen(false)}
+              className="block px-4 py-2"
+            >
               All Products
-            </a>
-            <a href="#" className="block px-4 py-2">
+            </NavLink>
+            <NavLink
+              to="/ourServices"
+              onClick={() => setIsOpen(false)}
+              className="block px-4 py-2"
+            >
               Our Services
-            </a>
-            <a href="#" className="block px-4 py-2">
+            </NavLink>
+            <NavLink
+              to="/gallery"
+              onClick={() => setIsOpen(false)}
+              className="block px-4 py-2"
+            >
               Gallery
-            </a>
-            <a href="#" className="block px-4 py-2">
-              About
-            </a>
-            <a href="#" className="block px-4 py-2">
+            </NavLink>
+            <NavLink
+              to="/aboutUs"
+              onClick={() => setIsOpen(false)}
+              className="block px-4 py-2"
+            >
+              About Us
+            </NavLink>
+            <NavLink
+              to="/contact"
+              onClick={() => setIsOpen(false)}
+              className="block px-4 py-2"
+            >
               Contact
-            </a>
+            </NavLink>
           </div>
         )}
       </nav>

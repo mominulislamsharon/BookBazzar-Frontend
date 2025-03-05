@@ -1,6 +1,6 @@
 import bannerImg from "@/assets/images/banner-1.png";
 
-const HeroBanner = () => {
+const Banner = () => {
   return (
     <div className="relative w-full min-h-[500px] bg-[#fdf7f5] flex flex-col lg:flex-row items-center px-6 md:px-12 lg:px-20 py-12">
       {/* Left Content */}
@@ -28,4 +28,4 @@ const HeroBanner = () => {
   );
 };
 
-export default HeroBanner;
+export default Banner;
