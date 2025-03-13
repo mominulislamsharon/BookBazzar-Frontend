@@ -79,7 +79,7 @@ export default function Navbar() {
 
             {/* Login Icon */}
             <NavLink
-              to="/admin/dashboard"
+              to="/user/dashboard"
               className="p-2 hover:bg-gray-100 rounded-full"
             >
               <User size={24} />

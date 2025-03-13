@@ -7,6 +7,9 @@ import Register from "@/pages/Register";
 import { createBrowserRouter } from "react-router-dom";
 import { adminPath } from "./admin.routes";
 import AdminLayout from "@/components/layout/AdminLayout";
+import { routeGenerator } from "@/utils/routesGenerator";
+import UserLayout from "@/components/layout/UserLayout";
+import { userPath } from "./user.route";
 
 const router = createBrowserRouter([
   {
@@ -38,13 +41,18 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <AdminLayout />,
-    children: adminPath,
+    children: routeGenerator(adminPath),
   },
   // {
   //   path: "/orders",
   //   element: <MainLayout />,
   //   children: adminPath,
   // },
+  {
+    path: "/user",
+    element: <UserLayout />,
+    children: routeGenerator(userPath),
+  },
   {
     path: "/login",
     element: <Login></Login>,

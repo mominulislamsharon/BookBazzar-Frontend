@@ -1,4 +1,5 @@
 import OrderManagementLayout from "@/components/layout/OrderManagementLayout";
+import UserDashboard from "@/pages/admin/UserDashboard";
 import UserManagementLayout from "@/components/layout/UserManagementLayout";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import CreateOrder from "@/pages/admin/CreateOrder";
@@ -12,11 +13,11 @@ type TRoute = {
   children?: TRoute[];
 }
 
-export const adminPath = [
+export const userPath = [
   {
     name: 'Dashboard',
     path: "dashboard",
-    element: <AdminDashboard />,
+    element: <UserDashboard />,
   },
   // {
   //   index: true,
