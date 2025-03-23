@@ -3,12 +3,21 @@ import { Menu, Search, ShoppingCart, User, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link, NavLink } from "react-router-dom";
+import { useAppDispatch } from "@/redux/hook";
+import { logOut } from "@/redux/features/auth/authSlice";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // Mobile Menu
   const [showSearch, setShowSearch] = useState(false); // Desktop Search
   const [showCart, setShowCart] = useState(false); // Order Cart Drawer
   const [showMobileSearch, setShowMobileSearch] = useState(false); // Mobile Search Modal
+
+  const dispatch = useAppDispatch();
+
+  const handleLogOut = () => {
+    
+    dispatch(logOut());
+  };
   return (
     <>
       <nav className="bg-white shadow-md fixed top-0 w-full z-50">
@@ -20,6 +29,7 @@ export default function Navbar() {
           >
             BookBazaar
           </NavLink>
+          <Button onClick={handleLogOut}>LogOut</Button>
           {/* Center Menu - Home, About, Contact (only desktop) */}
           <div className="hidden md:flex md:space-x-4 font-medium lg:space-x-6 whitespace-nowrap md:pr-6 lg:pr-0">
             <Link to="/" className="hover:text-blue-600">
@@ -79,7 +89,7 @@ export default function Navbar() {
 
             {/* Login Icon */}
             <NavLink
-              to="/user/dashboard"
+              to="/admin/dashboard"
               className="p-2 hover:bg-gray-100 rounded-full"
             >
               <User size={24} />

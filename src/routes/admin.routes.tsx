@@ -4,6 +4,7 @@ import AdminDashboard from "@/pages/admin/AdminDashboard";
 import CreateOrder from "@/pages/admin/CreateOrder";
 import CreateUser from "@/pages/admin/CreateUser";
 import ManageUsers from "@/pages/admin/ManageUsers";
+import ProductManagement from "@/pages/admin/ProductManagement/ProductManagement";
 import ViewOrders from "@/pages/admin/ViewOrder";
 
 type TRoute = {
@@ -36,6 +37,23 @@ export const adminPath = [
         name: 'Manage-Users',
         path: "manage-users",
         element: <ManageUsers />,
+      },
+    ],
+  },
+  {
+    name: 'Products',
+    path: "products",
+    element: <ProductManagement />,
+    children: [
+      {
+        name: 'Products',
+        path: "products",
+        element: <ProductManagement />,
+      },
+      {
+        name: 'refresh',
+        path: "auth/refresh-token",
+        element: <CreateOrder />,
       },
     ],
   },

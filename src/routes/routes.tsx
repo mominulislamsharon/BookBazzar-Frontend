@@ -10,6 +10,7 @@ import AdminLayout from "@/components/layout/AdminLayout";
 import { routeGenerator } from "@/utils/routesGenerator";
 import UserLayout from "@/components/layout/UserLayout";
 import { userPath } from "./user.route";
+import ProtectedRoute from "@/components/layout/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <AdminLayout />,
+    element: (
+      <ProtectedRoute>
+        <AdminLayout />
+      </ProtectedRoute>
+    ),
     children: routeGenerator(adminPath),
   },
   // {
@@ -50,7 +55,11 @@ const router = createBrowserRouter([
   // },
   {
     path: "/user",
-    element: <UserLayout />,
+    element: (
+      <ProtectedRoute>
+        <UserLayout />
+      </ProtectedRoute>
+    ),
     children: routeGenerator(userPath),
   },
   {

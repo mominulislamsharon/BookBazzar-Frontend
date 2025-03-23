@@ -195,6 +195,7 @@ import {
   FaShoppingCart,
   FaCog,
   FaChevronDown,
+  FaBox,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { sidebarItemsGenerator } from "@/utils/sidebarItemsGenerator";
@@ -204,6 +205,7 @@ const AdminLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [userDropdown, setUserDropdown] = useState(false);
   const [orderDropdown, setOrderDropdown] = useState(false);
+  const [productDropdown, setProductDropdown] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -264,6 +266,43 @@ const AdminLayout = () => {
                       onClick={() => setIsSidebarOpen(false)}
                     >
                       Manage Users
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+
+            {/* Product Management */}
+            <li>
+              <button
+                className="flex items-center justify-between w-full hover:bg-gray-700 p-2 rounded"
+                onClick={() => setProductDropdown(!productDropdown)}
+              >
+                <span className="flex items-center gap-2">
+                  < FaBox/> Product Management
+                </span>
+                <FaChevronDown
+                  className={`transition-transform ${
+                    productDropdown ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {productDropdown && (
+                <ul className="pl-6 mt-2 space-y-2">
+                  <li className="hover:bg-gray-700 p-2 rounded">
+                    <Link
+                      to="/admin/auth/refresh-token"
+                      onClick={() => setIsSidebarOpen(false)}
+                    >
+                      Create Product
+                    </Link>
+                  </li>
+                  <li className="hover:bg-gray-700 p-2 rounded">
+                    <Link
+                      to="/admin/products"
+                      onClick={() => setIsSidebarOpen(false)}
+                    >
+                      All Products
                     </Link>
                   </li>
                 </ul>
