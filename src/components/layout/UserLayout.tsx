@@ -58,7 +58,6 @@
 
 // export default UserLayout;
 
-
 import Navbar from "@/pages/Home/Navbar";
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
@@ -72,8 +71,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { sidebarItemsGenerator } from "@/utils/sidebarItemsGenerator";
-import { userPath } from "@/routes/user.route";
-
+import { userPath } from "@/routes/user.routes";
 
 const UserLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

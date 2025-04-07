@@ -291,7 +291,7 @@ const AdminLayout = () => {
                 <ul className="pl-6 mt-2 space-y-2">
                   <li className="hover:bg-gray-700 p-2 rounded">
                     <Link
-                      to="/admin/auth/refresh-token"
+                      to="/admin/products/create-product"
                       onClick={() => setIsSidebarOpen(false)}
                     >
                       Create Product
@@ -299,7 +299,7 @@ const AdminLayout = () => {
                   </li>
                   <li className="hover:bg-gray-700 p-2 rounded">
                     <Link
-                      to="/admin/products"
+                      to="/admin/products/all-products"
                       onClick={() => setIsSidebarOpen(false)}
                     >
                       All Products

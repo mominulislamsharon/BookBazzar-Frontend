@@ -9,7 +9,7 @@ import { adminPath } from "./admin.routes";
 import AdminLayout from "@/components/layout/AdminLayout";
 import { routeGenerator } from "@/utils/routesGenerator";
 import UserLayout from "@/components/layout/UserLayout";
-import { userPath } from "./user.route";
+import { userPath } from "./user.routes";
 import ProtectedRoute from "@/components/layout/ProtectedRoute";
 
 const router = createBrowserRouter([
