@@ -11,6 +11,7 @@ import { useCreateProductsMutation } from "@/redux/features/admin/productBookMan
 import { toast } from "sonner";
 import { TResponse } from "@/types/global";
 import { useRef } from "react";
+import { TProductBooks } from "@/types/productManagment.type";
 
 const CreateProductBook = () => {
   const [addProduct] = useCreateProductsMutation();
@@ -19,6 +20,7 @@ const CreateProductBook = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Creating...");
 
+
     const formData = new FormData();
 
     formData.append("data", JSON.stringify(data));
@@ -26,7 +28,7 @@ const CreateProductBook = () => {
     formData.append("file", data.image?.[0]);
 
     try {
-      const res = (await addProduct(formData)) as TResponse;
+      const res = (await addProduct(formData)) as TResponse<TProductBooks>;
       if (res?.error) {
         toast.error(res.error.data.message, { id: toastId });
       } else {

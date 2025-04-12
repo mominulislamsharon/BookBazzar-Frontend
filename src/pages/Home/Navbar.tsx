@@ -35,7 +35,7 @@ export default function Navbar() {
             <Link to="/" className="hover:text-blue-600">
               Home
             </Link>
-            <NavLink to="allProducts" className="hover:text-blue-600">
+            <NavLink to="all-products" className="hover:text-blue-600">
               All Products
             </NavLink>
             <NavLink to="/ourServices" className="hover:text-blue-600">
