@@ -13,6 +13,7 @@ import { userPath } from "./user.routes";
 import ProtectedRoute from "@/components/layout/ProtectedRoute";
 import AllProductBook from "@/pages/admin/ProductManagement/AllProductBook";
 import ProductBookDetails from "@/pages/admin/ProductManagement/ProductBookDetails";
+import ViewOrders from "@/pages/admin/OrderManagemnet/ViewOrder";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,15 @@ const router = createBrowserRouter([
       },
       {
         path: "book-details/:id",
-        element:<ProtectedRoute><ProductBookDetails />,</ProtectedRoute> 
+        element: (
+          <ProtectedRoute>
+            <ProductBookDetails />,
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "view-orders",
+        element: <ViewOrders />,
       },
     ],
   },

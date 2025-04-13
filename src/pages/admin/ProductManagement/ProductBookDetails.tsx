@@ -1,6 +1,9 @@
 import { useSingleBooksQuery } from "@/redux/features/admin/productBookManajment.api";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { useAppDispatch } from "@/redux/hook";
+import { toast } from "sonner"; // or the correct path
+import { addToCart, TCartItem } from "@/redux/features/auth/cartSlice";
 
 type BookType = {
   _id: string;
@@ -20,9 +23,11 @@ const ProductBookDetails = () => {
   const { id } = useParams<{ id: string }>();
 
   const bookID = id || " ";
-  
+
   const { data, isLoading } = useSingleBooksQuery(bookID);
   const book: BookType | undefined = data?.data;
+
+  const dispatch = useAppDispatch();
 
   // Quantity state
   const [qty, setQty] = useState(1);
@@ -41,9 +46,10 @@ const ProductBookDetails = () => {
   };
 
   const handleAddToCart = () => {
-    // You can use Redux, Context API or localStorage to save cart data
-    console.log("Add to cart", { ...book, selectedQty: qty });
-    alert(`✅ ${book.title} (${qty}) added to cart`);
+    const cartItem: TCartItem = { ...book, selectedQty: qty };
+
+    dispatch(addToCart(cartItem));
+    toast.success(`✅ ${book.title} (${qty}) added to cart`);
   };
 
   return (
@@ -51,7 +57,10 @@ const ProductBookDetails = () => {
       {/* Image */}
       <div className="w-full flex justify-center">
         <img
-          src={book.images || "https://i.postimg.cc/KYn2wW9C/Colorful-Book-Store-Education-Free-Logo.jpg"}
+          src={
+            book.images ||
+            "https://i.postimg.cc/KYn2wW9C/Colorful-Book-Store-Education-Free-Logo.jpg"
+          }
           alt={book.title}
           className="rounded-lg shadow-lg object-contain h-[400px] w-auto"
         />
@@ -74,11 +83,17 @@ const ProductBookDetails = () => {
 
         <p className="mb-4">{book.description}</p>
 
-        <p className={`font-semibold mb-2 ${book.inStock ? "text-green-600" : "text-red-500"}`}>
+        <p
+          className={`font-semibold mb-2 ${
+            book.inStock ? "text-green-600" : "text-red-500"
+          }`}
+        >
           {book.inStock ? "✅ In Stock" : "❌ Out of Stock"}
         </p>
 
-        <p className="text-sm text-gray-500 mb-4">Available Quantity: {book.quantity}</p>
+        <p className="text-sm text-gray-500 mb-4">
+          Available Quantity: {book.quantity}
+        </p>
 
         {/* Quantity Selector */}
         <div className="flex items-center gap-4 mb-6">
@@ -100,11 +115,10 @@ const ProductBookDetails = () => {
         {/* Add to Cart Button */}
         <button
           onClick={handleAddToCart}
-          className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+          className="bg-blue-600 hover:bg-blue-700 text-white w-full py-2 mt-2 rounded"
         >
-          🛒 Add to Cart
+          Add to Cart
         </button>
-        
       </div>
     </div>
   );

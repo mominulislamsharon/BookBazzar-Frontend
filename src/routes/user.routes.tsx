@@ -1,10 +1,10 @@
-import OrderManagementLayout from "@/components/layout/OrderManagementLayout";
+import OrderManagementLayout from "@/pages/admin/OrderManagemnet/OrderManagementLayout";
 import UserDashboard from "@/pages/admin/UserDashboard";
 import UserManagementLayout from "@/components/layout/UserManagementLayout";
-import CreateOrder from "@/pages/admin/CreateOrder";
 import CreateUser from "@/pages/admin/CreateUser";
 import ManageUsers from "@/pages/admin/ManageUsers";
-import ViewOrders from "@/pages/admin/ViewOrder";
+import ViewOrders from "@/pages/admin/OrderManagemnet/ViewOrder";
+import CreateOrder from "@/pages/admin/OrderManagemnet/CreateOrder";
 
 export const userPath = [
   {
@@ -35,7 +35,7 @@ export const userPath = [
   },
   {
     name: "Orders",
-    path: "Orders",
+    path: "orders",
     element: <OrderManagementLayout></OrderManagementLayout>,
     children: [
       {
@@ -43,11 +43,11 @@ export const userPath = [
         path: "create-order",
         element: <CreateOrder />,
       },
-      {
-        name: "View-Orders",
-        path: "view-orders",
-        element: <ViewOrders />,
-      },
+      // {
+      //   name: "View-Orders",
+      //   path: "view-orders",
+      //   element: <ViewOrders />,
+      // },
     ],
   },
 ];
