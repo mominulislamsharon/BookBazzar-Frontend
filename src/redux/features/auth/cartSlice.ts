@@ -40,7 +40,7 @@ const cartSlice = createSlice({
       if (item) {
         item.selectedQty += action.payload.amount;
         if (item.selectedQty < 1) {
-          item.selectedQty = 1; // minimum 1 quantity
+          item.selectedQty = 1; 
         }
       }
     },

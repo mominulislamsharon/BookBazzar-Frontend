@@ -17,7 +17,6 @@ const handleOrderSubmit = async () => {
     console.error("Order creation failed:", error);
   }
 };
-
   return (
     <div>
       <h1>This order create page</h1>

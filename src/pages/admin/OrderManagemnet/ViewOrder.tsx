@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "@/redux/hook";
 import { RootState } from "@/redux/store";
 import { Button } from "@/components/ui/button";
@@ -8,11 +8,15 @@ import {
   removeFromCart,
   updateQuantity,
 } from "@/redux/features/auth/cartSlice";
+import { useCreateOrdersMutation } from "@/redux/features/admin/orderManagment.api";
+import { toast } from "sonner";
 
 const ViewOrders = () => {
   const cartItems = useAppSelector((state: RootState) => state.cart.items);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+
+  const [createOrder, { isLoading, isSuccess, isError, data, error }] =
+    useCreateOrdersMutation();
 
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [coupon, setCoupon] = useState<string>("");
@@ -56,11 +60,46 @@ const ViewOrders = () => {
 
   const total = subtotal - discount + deliveryCharge;
 
-  const handleCheckout = () => {
-    if (selectedCartItems.length > 0) {
-      navigate("/checkout", { state: { items: selectedCartItems, total } });
+  const user = useAppSelector((state: RootState) => state.auth.user);
+
+  const handleCheckout = async () => {
+    for (const item of selectedCartItems) {
+      await createOrder({
+        product: item._id,
+        quantity: item.selectedQty,
+        email: user?.email,
+      });
     }
   };
+
+  const toastId = "cart";
+
+  useEffect(() => {
+    if (isLoading) {
+      toast.loading("Processing your order...", { id: toastId });
+    }
+
+    if (isSuccess) {
+      toast.success(data?.message || "Order placed successfully!", {
+        id: toastId,
+      });
+      if (data?.data) {
+        setTimeout(() => {
+          window.location.href = data?.data.payment?.checkout_url;
+        }, 1000);
+      }
+    }
+
+    // Reset cart selection
+    setSelectedItems([]);
+    setCoupon("");
+    setDeliveryOption("standard");
+
+    if (isError) {
+      const errorMessage = (error as any)?.data?.message;
+      toast.error(errorMessage, { id: toastId });
+    }
+  }, [isLoading, isSuccess, isError, data?.message, error, data?.data]);
 
   return (
     <div className="container mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">

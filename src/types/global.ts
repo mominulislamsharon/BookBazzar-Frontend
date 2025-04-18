@@ -46,3 +46,4 @@ export type TUpdateProductPayload = {
   id: string;
   data: Partial<TProductBooks>;
 };
+

@@ -14,6 +14,8 @@ import ProtectedRoute from "@/components/layout/ProtectedRoute";
 import AllProductBook from "@/pages/admin/ProductManagement/AllProductBook";
 import ProductBookDetails from "@/pages/admin/ProductManagement/ProductBookDetails";
 import ViewOrders from "@/pages/admin/OrderManagemnet/ViewOrder";
+import VerifyOrder from "@/pages/admin/OrderManagemnet/VerifyOrder";
+import ViewAllOrder from "@/pages/admin/OrderManagemnet/VIewAllOrder";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +50,14 @@ const router = createBrowserRouter([
         path: "view-orders",
         element: <ViewOrders />,
       },
+      {
+        path: "order/verify",
+        element: <VerifyOrder />,
+      },
+      {
+        path: "view-all-orders",
+        element: <ViewAllOrder/>
+      }
     ],
   },
   {

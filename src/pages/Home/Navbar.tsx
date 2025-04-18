@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, Search, ShoppingCart, User, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { logOut } from "@/redux/features/auth/authSlice";
 import { RootState } from "@/redux/store";
@@ -15,6 +15,7 @@ export default function Navbar() {
   const [showMobileSearch, setShowMobileSearch] = useState(false); // Mobile Search Modal
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setShowCart(false);
@@ -24,7 +25,8 @@ export default function Navbar() {
   const dispatch = useAppDispatch();
 
   const handleLogOut = () => {
-    dispatch(logOut());
+    console.log("logout cheaked");    dispatch(logOut());
+    navigate ("/login"); // Redirect to login page after logout
   };
 
   const handleDeleteFromCart = (id: string) => {
@@ -32,6 +34,7 @@ export default function Navbar() {
   };
 
   const cartItems = useAppSelector((state: RootState) => state.cart.items);
+
 
   return (
     <>
