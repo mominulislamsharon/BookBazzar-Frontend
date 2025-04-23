@@ -15,7 +15,8 @@ import AllProductBook from "@/pages/admin/ProductManagement/AllProductBook";
 import ProductBookDetails from "@/pages/admin/ProductManagement/ProductBookDetails";
 import ViewOrders from "@/pages/admin/OrderManagemnet/ViewOrder";
 import VerifyOrder from "@/pages/admin/OrderManagemnet/VerifyOrder";
-import ViewAllOrder from "@/pages/admin/OrderManagemnet/VIewAllOrder";
+import ViewAllOrder from "@/pages/admin/OrderManagemnet/ViewAllOrder";
+import ResetPassword from "@/pages/Home/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -63,7 +64,7 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <ProtectedRoute>
+      <ProtectedRoute role="admin">
         <AdminLayout />
       </ProtectedRoute>
     ),
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
   {
     path: "/user",
     element: (
-      <ProtectedRoute>
+      <ProtectedRoute role="user">
         <UserLayout />
       </ProtectedRoute>
     ),
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login></Login>,
+  },
+  {
+    path: "/reset-password",
+    element: <ResetPassword/>,
   },
   {
     path: "/register",

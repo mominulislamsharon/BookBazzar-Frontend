@@ -29,6 +29,12 @@ const orderManagmentApi = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+    deleteOrder: builder.mutation({
+      query: (id) => ({
+        url: `/orders/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -37,4 +43,5 @@ export const {
   useUpdateOrderStatusMutation,
   useCreateOrdersMutation,
   useVerifyOrderQuery,
+  useDeleteOrderMutation,
 } = orderManagmentApi;

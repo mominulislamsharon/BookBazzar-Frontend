@@ -25,8 +25,8 @@ export default function Navbar() {
   const dispatch = useAppDispatch();
 
   const handleLogOut = () => {
-    console.log("logout cheaked");    dispatch(logOut());
-    navigate ("/login"); // Redirect to login page after logout
+    dispatch(logOut());
+    navigate("/login");
   };
 
   const handleDeleteFromCart = (id: string) => {
@@ -34,7 +34,6 @@ export default function Navbar() {
   };
 
   const cartItems = useAppSelector((state: RootState) => state.cart.items);
-
 
   return (
     <>
@@ -242,7 +241,10 @@ export default function Navbar() {
                       />
                       <div>
                         <h4 className="font-semibold text-sm">
-                          <Link to={`/book-details/${item._id}`}>{item.title}</Link> {/* Added Link */}
+                          <Link to={`/book-details/${item._id}`}>
+                            {item.title}
+                          </Link>{" "}
+                          {/* Added Link */}
                         </h4>
                         <p className="text-sm text-gray-600">${item.price}</p>
                       </div>

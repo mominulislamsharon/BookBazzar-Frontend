@@ -2,6 +2,8 @@ import UserManagementLayout from "@/components/layout/UserManagementLayout";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import CreateUser from "@/pages/admin/CreateUser";
 import ManageUsers from "@/pages/admin/ManageUsers";
+import AdminViewAllOrder from "@/pages/admin/OrderManagemnet/AdminViewAllOrder";
+import OrderManagementLayout from "@/pages/admin/OrderManagemnet/OrderManagementLayout";
 import AdminAllProducts from "@/pages/admin/ProductManagement/AdminAllProducts";
 import AdminUpdateProduct from "@/pages/admin/ProductManagement/AdminUpdateProduct";
 import CreateProductBook from "@/pages/admin/ProductManagement/CreateProductBook";
@@ -59,21 +61,16 @@ export const adminPath = [
       },
     ],
   },
-  // {
-  //   name: "Orders",
-  //   path: "orders",
-  //   element: <OrderManagementLayout></OrderManagementLayout>,
-  //   children: [
-  //     {
-  //       name: "Create-Order",
-  //       path: "create-order",
-  //       element: <CreateOrder />,
-  //     },
-  //     {
-  //       name: "View-Orders",
-  //       path: "view-orders",
-  //       element: <ViewOrders />,
-  //     },
-  //   ],
-  // },
+  {
+    name: "Orders",
+    path: "orders",
+    element: <OrderManagementLayout></OrderManagementLayout>,
+    children: [
+      {
+        name: "Admin View All Orders",
+        path: "admin-view-all-orders",
+        element: <AdminViewAllOrder />,
+      },
+    ],
+  },
 ];
