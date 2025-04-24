@@ -70,11 +70,6 @@ const router = createBrowserRouter([
     ),
     children: routeGenerator(adminPath),
   },
-  // {
-  //   path: "/orders",
-  //   element: <MainLayout />,
-  //   children: adminPath,
-  // },
   {
     path: "/user",
     element: (

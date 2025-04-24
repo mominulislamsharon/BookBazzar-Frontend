@@ -5,6 +5,7 @@ import CreateUser from "@/pages/admin/CreateUser";
 import ManageUsers from "@/pages/admin/ManageUsers";
 import ViewOrders from "@/pages/admin/OrderManagemnet/ViewOrder";
 import CreateOrder from "@/pages/admin/OrderManagemnet/CreateOrder";
+import ViewAllOrder from "@/pages/admin/OrderManagemnet/ViewAllOrder";
 
 export const userPath = [
   {
@@ -38,16 +39,12 @@ export const userPath = [
     path: "orders",
     element: <OrderManagementLayout></OrderManagementLayout>,
     children: [
+    
       {
-        name: "Create-Order",
-        path: "create-order",
-        element: <CreateOrder />,
+        name: "View-Orders",
+        path: "view-all-orders",
+        element: <ViewAllOrder/>,
       },
-      // {
-      //   name: "View-Orders",
-      //   path: "view-orders",
-      //   element: <ViewOrders />,
-      // },
     ],
   },
 ];

@@ -7,6 +7,7 @@ export type TUser = {
   iat: number;
   exp: number;
   email?: string;
+  photoURL?: string;
 };
 
 type TAuthState = {

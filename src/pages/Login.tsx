@@ -6,12 +6,15 @@ import { setUser, TUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hook";
 import { verifyToken } from "@/utils/verifyToken";
 import { FieldValues } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const defaultValues = {
     userEmail: "adminlast1@gmail.com",
@@ -37,7 +40,8 @@ const Login = () => {
       dispatch(setUser({ user: user, token: res.data.token }));
       toast.success("Logged in successfully", { id: toastId, duration: 2000 });
 
-      navigate(`/${user.role}/dashboard`);
+      // navigate(`/${user.role}/dashboard`);
+      navigate(from, { replace: true }); 
     } catch (err) {
       toast.error("Something went wrong", { id: toastId, duration: 2000 });
     }

@@ -1,4 +1,5 @@
 import bannerImg from "@/assets/images/banner-1.png";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -11,15 +12,20 @@ const Banner = () => {
         <h4 className="text-md uppercase font-semibold text-gray-500 mt-6">
           Order Now and Get 50% Off!
         </h4>
-        <button className="mt-6 bg-black text-white py-3 px-6 rounded-md text-lg hover:bg-gray-800 transition">
-          Order Now
-        </button>
+        <div className="mt-6">
+          <Link
+            to="/all-Products"
+            className=" bg-black text-white py-3 px-6 rounded-md text-lg hover:bg-gray-800 transition"
+          >
+            Order Now
+          </Link>
+        </div>
       </div>
 
       {/* Right Side (Image) */}
       <div className="flex-1 flex justify-center items-center mt-8 lg:mt-0">
         <img
-          src={bannerImg} 
+          src={bannerImg}
           alt="Featured Books"
           className="max-w-full w-full drop-shadow-xl object-cover"
         />

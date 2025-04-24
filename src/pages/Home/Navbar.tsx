@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Menu, Search, ShoppingCart, User, X } from "lucide-react";
+import { Menu, Search, ShoppingCart, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { logOut } from "@/redux/features/auth/authSlice";
 import { RootState } from "@/redux/store";
 import { removeFromCart } from "@/redux/features/auth/cartSlice";
+import ProfileMenu from "./ProfileMenu";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // Mobile Menu
@@ -15,7 +15,6 @@ export default function Navbar() {
   const [showMobileSearch, setShowMobileSearch] = useState(false); // Mobile Search Modal
 
   const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     setShowCart(false);
@@ -23,11 +22,6 @@ export default function Navbar() {
   }, [location]);
 
   const dispatch = useAppDispatch();
-
-  const handleLogOut = () => {
-    dispatch(logOut());
-    navigate("/login");
-  };
 
   const handleDeleteFromCart = (id: string) => {
     dispatch(removeFromCart(id));
@@ -46,7 +40,6 @@ export default function Navbar() {
           >
             BookBazaar
           </NavLink>
-          <Button onClick={handleLogOut}>LogOut</Button>
           {/* Center Menu - Home, About, Contact (only desktop) */}
           <div className="hidden md:flex md:space-x-4 font-medium lg:space-x-6 whitespace-nowrap md:pr-6 lg:pr-0">
             <Link to="/" className="hover:text-blue-600">
@@ -113,12 +106,8 @@ export default function Navbar() {
             </div>
 
             {/* Login Icon */}
-            <NavLink
-              to="/admin/dashboard"
-              className="p-2 hover:bg-gray-100 rounded-full"
-            >
-              <User size={24} />
-            </NavLink>
+
+            <ProfileMenu />
 
             {/* Mobile Menu Icon */}
             <div className="md:hidden">
@@ -143,7 +132,7 @@ export default function Navbar() {
               Home
             </NavLink>
             <NavLink
-              to="/allProducts"
+              to="/all-Products"
               onClick={() => setIsOpen(false)}
               className="block px-4 py-2"
             >

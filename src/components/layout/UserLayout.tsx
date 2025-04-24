@@ -106,43 +106,6 @@ const UserLayout = () => {
           </div>
 
           <ul className="space-y-3 mt-4">
-            {/* User Management */}
-            <li>
-              <button
-                className="flex items-center justify-between w-full hover:bg-gray-700 p-2 rounded"
-                onClick={() => setUserDropdown(!userDropdown)}
-              >
-                <span className="flex items-center gap-2">
-                  <FaUser /> User Management
-                </span>
-                <FaChevronDown
-                  className={`transition-transform ${
-                    userDropdown ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-              {userDropdown && (
-                <ul className="pl-6 mt-2 space-y-2">
-                  <li className="hover:bg-gray-700 p-2 rounded">
-                    <Link
-                      to="/user/users/create-user"
-                      onClick={() => setIsSidebarOpen(false)}
-                    >
-                      Create User
-                    </Link>
-                  </li>
-                  <li className="hover:bg-gray-700 p-2 rounded">
-                    <Link
-                      to="/user/users/manage-users"
-                      onClick={() => setIsSidebarOpen(false)}
-                    >
-                      Manage Users
-                    </Link>
-                  </li>
-                </ul>
-              )}
-            </li>
-
             {/* Order Management */}
             <li>
               <button
@@ -162,15 +125,7 @@ const UserLayout = () => {
                 <ul className="pl-6 mt-2 space-y-2">
                   <li className="hover:bg-gray-700 p-2 rounded">
                     <Link
-                      to="/user/orders/create-order"
-                      onClick={() => setIsSidebarOpen(false)}
-                    >
-                      Create Order
-                    </Link>
-                  </li>
-                  <li className="hover:bg-gray-700 p-2 rounded">
-                    <Link
-                      to="/user/orders/view-orders"
+                      to="/user/orders/view-all-orders"
                       onClick={() => setIsSidebarOpen(false)}
                     >
                       View Orders
@@ -179,7 +134,6 @@ const UserLayout = () => {
                 </ul>
               )}
             </li>
-
             {/* Settings */}
             <li className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
               <FaCog />
